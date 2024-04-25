@@ -7,9 +7,11 @@ import { Group, Text, Title } from "@mantine/core";
 
 const CharChart = ({ chars }) => {
   const [chartData, setChartData] = useState([]);
+  const [totalMesos, setTotalMesos] = useState(0);
 
   useEffect(() => {
     let dataForChart = [];
+    let dataForMesos = 0;
 
     chars.forEach((char, i) => {
       const dataForChartToPush = {
@@ -19,14 +21,19 @@ const CharChart = ({ chars }) => {
       };
 
       dataForChart.push(dataForChartToPush);
+      dataForMesos += Math.round(char.totalMesos);
     });
 
     setChartData(dataForChart);
+    setTotalMesos(dataForMesos);
   }, [chars]);
 
   return (
     <div className="char-chart-div">
-      <Title className="content-subtitle">Mesos Per Week</Title>
+      <Title className="content-subtitle">
+        Mesos Per Week:{" "}
+        {totalMesos.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+      </Title>
       <Group justify="center" className="char-chart-grp">
         <div className="char-chart-grp-cont">
           <Text className="char-chart-total">
