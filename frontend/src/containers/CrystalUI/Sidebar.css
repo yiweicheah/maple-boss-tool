@@ -1,0 +1,106 @@
+.save-div {
+  padding: 15px !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: solid 2px #355C7D;
+}
+
+.save-icon {
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.edit-btn {
+  width: 70px;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  background-color: #355C7D !important;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.edit-btn.done {
+  background-color: red !important;
+}
+
+.save-icon:hover {
+  transform: scale(1.2);
+}
+
+.crystal-ui-nav {
+  text-align: left !important;
+  padding: 15px !important;
+  transition-duration: 500ms;
+}
+
+.crystal-ui-nav.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding: 5px !important;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  border-radius: 15px;
+  background-color: #6C5B7B;
+  color: white;
+  text-align: center !important;
+  width: max-content;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.crystal-ui-nav.edit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  padding: 15.5px !important;
+}
+
+.crystal-ui-nav.mantine-NavLink-root {
+  &[data-active] {
+    font-weight: bold;
+  }
+}
+
+.crystal-ui-del-btn {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.new-char-form {
+  display: flex;
+  align-items: center;
+}
+
+.crystal-ui-nav.input {
+  width: max-content;
+  margin: auto;
+}
+
+.new-char-btn {
+  margin-left: 3px;
+  margin-right: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.new-char-btn:hover {
+  transform: scale(1.2);
+}
+
+.search-btn {
+  width: fit-content !important;
+  margin: auto !important;
+  margin-top: 15px !important;
+}

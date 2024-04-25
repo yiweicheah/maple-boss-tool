@@ -1,0 +1,73 @@
+.bosses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15%, 170px));
+  grid-gap: 16px;
+  justify-content: center;
+  padding: 15px;
+  margin-top: 15px;
+  transition-duration: 500ms;
+}
+
+.boss-card {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition-duration: 300ms;
+}
+
+.boss-card.active {
+  filter: none;
+  background: #355C7D;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+.boss-card-switch.mantine-Switch-root {
+  width: fit-content;
+  height: fit-content;
+}
+
+
+.boss-card-section {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.boss-card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition-duration: 300ms;
+}
+
+.boss-card:hover .boss-card-img {
+  transform: scale(1.2);
+}
+
+.boss-card.active .boss-card-img {
+  filter: none
+}
+
+.boss-card-content {
+  margin-top: auto;
+}
+
+.boss-card-name {
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+
+.boss-card-party {
+  margin-top: 10px;
+}
+
+
+.boss-card-party.input {
+  width: fit-content !important;
+  background-color: black !important;
+}

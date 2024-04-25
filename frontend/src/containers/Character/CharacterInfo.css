@@ -1,0 +1,16 @@
+.char-info-div {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.char-info-name {
+  font-size: 45px !important;
+}
+
+.char-info-data {
+  margin-top: 10px;
+  font-size: 20px !important;
+  font-weight: bold !important;
+}

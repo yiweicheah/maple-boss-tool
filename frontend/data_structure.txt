@@ -1,0 +1,23 @@
+user = {
+  totalChar: int,
+  mesosPerWeek: int,
+  totalBoss: int
+}
+
+chars = [
+  {
+    name: str,
+    totalBosses: int,
+    totalMesos: int
+  }
+]
+
+bosses = {
+  char: [
+    {
+      name: str,
+      party: int,
+      selected: boo
+    }
+  ]
+}
