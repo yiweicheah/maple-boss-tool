@@ -65,7 +65,19 @@
 .crystal-ui-nav.mantine-NavLink-root {
   &[data-active] {
     font-weight: bold;
+    color: #6C5B7B ;
   }
+}
+
+.crystal-ui-nav-mesos {
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+.crystal-ui-nav.total {
+  margin-top: 15px;
+  text-align: center !important;
+  font-weight: bold;
 }
 
 .crystal-ui-del-btn {

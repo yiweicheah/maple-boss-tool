@@ -7,11 +7,12 @@ import {
   IconX,
   IconCircleMinus,
 } from "@tabler/icons-react";
-import { NavLink, TextInput } from "@mantine/core";
+import { NavLink, Text, TextInput } from "@mantine/core";
 
 import "./Sidebar.css";
 
 import { charBosses } from "../../data/charBosses";
+import { moneyConverter } from "../../functions/moneyConverter";
 
 const Sidebar = ({
   chars,
@@ -22,6 +23,7 @@ const Sidebar = ({
   setShow,
   setSelChar,
   saveData,
+  totalMesos,
 }) => {
   const [active, setActive] = useState("overview");
   const [edit, setEdit] = useState(false);
@@ -100,7 +102,7 @@ const Sidebar = ({
         ) : (
           <NavLink
             key={`char-nav-${i}`}
-            label={char.name}
+            label={`${char.name}`}
             onClick={() => {
               setActive(char.name);
               setShow("char");
@@ -108,6 +110,11 @@ const Sidebar = ({
             }}
             className="crystal-ui-nav"
             active={active === char.name ? true : false}
+            rightSection={
+              <Text className="crystal-ui-nav-mesos">
+                {moneyConverter(Math.round(char.totalMesos))}
+              </Text>
+            }
           />
         )
       )}
@@ -138,6 +145,9 @@ const Sidebar = ({
           </button>
         </form>
       )}
+      <div className="crystal-ui-nav total">
+        Total: {moneyConverter(Math.round(totalMesos))}
+      </div>
     </div>
   );
 };

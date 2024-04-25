@@ -5,13 +5,11 @@ import { colorPalette } from "../../data/colroPalette";
 import "./CharChart.css";
 import { Group, Text, Title } from "@mantine/core";
 
-const CharChart = ({ chars }) => {
+const CharChart = ({ chars, totalMesos }) => {
   const [chartData, setChartData] = useState([]);
-  const [totalMesos, setTotalMesos] = useState(0);
 
   useEffect(() => {
     let dataForChart = [];
-    let dataForMesos = 0;
 
     chars.forEach((char, i) => {
       const dataForChartToPush = {
@@ -21,11 +19,9 @@ const CharChart = ({ chars }) => {
       };
 
       dataForChart.push(dataForChartToPush);
-      dataForMesos += Math.round(char.totalMesos);
     });
 
     setChartData(dataForChart);
-    setTotalMesos(dataForMesos);
   }, [chars]);
 
   return (

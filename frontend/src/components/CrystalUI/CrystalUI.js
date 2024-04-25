@@ -14,6 +14,7 @@ const CrystalUI = () => {
   const [charsBosses, setCharsBosses] = useState({});
   const [show, setShow] = useState("overview");
   const [selChar, setSelChar] = useState(null);
+  const [totalMesos, setTotalMesos] = useState(0);
   const [hasChanged, setHasChanged] = useState(false);
 
   useEffect(() => {
@@ -60,6 +61,16 @@ const CrystalUI = () => {
     }
   }, [hasChanged]);
 
+  useEffect(() => {
+    let dataForMesos = 0;
+
+    chars.forEach((char, i) => {
+      dataForMesos += Math.round(char.totalMesos);
+    });
+
+    setTotalMesos(dataForMesos);
+  }, [chars]);
+
   const delChar = (char) => {
     if (window.confirm(`Are you sure you want to delete ${char.name}?`)) {
       const charsData = chars;
@@ -92,7 +103,13 @@ const CrystalUI = () => {
   const contentToShow = () => {
     switch (show) {
       case "overview":
-        return <Overview chars={chars} charsBosses={charsBosses} />;
+        return (
+          <Overview
+            chars={chars}
+            charsBosses={charsBosses}
+            totalMesos={totalMesos}
+          />
+        );
       case "char":
         return (
           <Character
@@ -127,6 +144,7 @@ const CrystalUI = () => {
             setShow={setShow}
             setSelChar={setSelChar}
             saveData={saveData}
+            totalMesos={totalMesos}
           />
         </AppShell.Navbar>
         <Fade>
