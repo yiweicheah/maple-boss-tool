@@ -1,8 +1,8 @@
 import { Title } from "@mantine/core";
 import CharChart from "../../containers/Overview/CharChart";
-// import BossesKilled from "../../containers/Overview/BossesKilled";
+import BossesKilled from "../../containers/Overview/BossesKilled";
 
-const Overview = ({ chars, charsBosses, totalMesos }) => {
+const Overview = ({ chars, charsBosses, totalMesos, totalBosses }) => {
   const content = () => {
     if (chars.length === 0) {
       return (
@@ -19,7 +19,7 @@ const Overview = ({ chars, charsBosses, totalMesos }) => {
             charsBosses={charsBosses}
             totalMesos={totalMesos}
           />
-          {/* <BossesKilled charsBosses={charsBosses} /> */}
+          <BossesKilled charsBosses={charsBosses} totalBosses={totalBosses} />
         </div>
       );
     }

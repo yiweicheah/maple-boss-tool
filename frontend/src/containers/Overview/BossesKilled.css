@@ -1,0 +1,39 @@
+.bosses-killed-div {
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.bosses-killed-grp {
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin-top: 20px;
+}
+
+.visualize-div {
+  width: 48%;
+  height: 100%;
+  overflow: auto;
+}
+
+.bosses-killed-boss-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.bosses-killed-boss-img {
+  height: 50px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.bosses-chart {
+  width: 48%;
+  
+  height: 100%;
+}

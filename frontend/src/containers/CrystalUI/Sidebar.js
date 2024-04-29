@@ -13,6 +13,7 @@ import "./Sidebar.css";
 
 import { charBosses } from "../../data/charBosses";
 import { moneyConverter } from "../../functions/moneyConverter";
+import { notifications } from "@mantine/notifications";
 
 const Sidebar = ({
   chars,
@@ -45,22 +46,36 @@ const Sidebar = ({
   const addChar = (e) => {
     e.preventDefault();
 
-    const charData = chars;
-    const bossData = charsBosses;
-    const newCharData = {
-      name: newChar,
-      totalMesos: 0,
-      totalBosses: 0,
-    };
+    let addedCharacters = [];
 
-    setChars([...charData, newCharData]);
-    setCharsBosses({ ...bossData, [newChar]: charBosses });
-    setNewChar("");
-    hideAdd();
+    chars.forEach((char) => {
+      addedCharacters.push(char.name);
+    });
+
+    if (addedCharacters.includes(newChar)) {
+      notifications.show({
+        title: "Error",
+        message: `${newChar} is already added. Please use a unique name for you new character.`,
+        color: "red",
+      });
+    } else {
+      const charData = chars;
+      const bossData = charsBosses;
+      const newCharData = {
+        name: newChar,
+        totalMesos: 0,
+        totalBosses: 0,
+      };
+
+      setChars([...charData, newCharData]);
+      setCharsBosses({ ...bossData, [newChar]: charBosses });
+      setNewChar("");
+      hideAdd();
+    }
   };
 
   return (
-    <div>
+    <div className="sidebar-div">
       <div className="save-div">
         <IconDeviceFloppy size="28" className="save-icon" onClick={saveClick} />
         <button
@@ -73,80 +88,86 @@ const Sidebar = ({
           {edit ? "Done" : "Edit"}
         </button>
       </div>
-      <NavLink
-        label="Overview"
-        onClick={() => {
-          setShow("overview");
-          setActive("overview");
-          setSelChar(null);
-        }}
-        className="crystal-ui-nav"
-        active={active === "overview" ? true : false}
-        leftSection={<IconFileAnalytics />}
-      />
-      <div className="crystal-ui-nav title">Characters</div>
-      {chars.map((char, i) =>
-        edit ? (
-          <div key={`char-nav-${i}`} className="crystal-ui-nav edit">
-            {char.name}
-            <IconCircleMinus
-              color="red"
-              className="crystal-ui-del-btn"
-              onClick={() => {
-                setShow("overview");
-                setActive("overview");
-                delChar(char);
-              }}
-            />
-          </div>
-        ) : (
-          <NavLink
-            key={`char-nav-${i}`}
-            label={`${char.name}`}
-            onClick={() => {
-              setActive(char.name);
-              setShow("char");
-              setSelChar(char);
-            }}
-            className="crystal-ui-nav"
-            active={active === char.name ? true : false}
-            rightSection={
-              <Text className="crystal-ui-nav-mesos">
-                {moneyConverter(Math.round(char.totalMesos))}
-              </Text>
-            }
-          />
-        )
-      )}
-      {!showedAdd ? (
+      <div className="nav-link-div">
         <NavLink
-          label="Add New Character"
+          label="Overview"
+          onClick={() => {
+            setShow("overview");
+            setActive("overview");
+            setSelChar(null);
+          }}
           className="crystal-ui-nav"
-          onClick={showAdd}
-          leftSection={<IconSquareRoundedPlusFilled />}
+          active={active === "overview" ? true : false}
+          leftSection={<IconFileAnalytics />}
         />
-      ) : (
-        <form onSubmit={addChar} className="new-char-form">
-          <TextInput
-            placeholder="Name"
-            value={newChar}
-            onChange={(e) => {
-              setNewChar(e.target.value);
-            }}
-            className="crystal-ui-nav input"
-            required
-            radius="xl"
+        <div className="crystal-ui-nav title">Characters</div>
+        {chars.map((char, i) =>
+          edit ? (
+            <div key={`char-nav-${i}`} className="crystal-ui-nav edit">
+              {char.name}
+              <IconCircleMinus
+                color="red"
+                className="crystal-ui-del-btn"
+                onClick={() => {
+                  setShow("overview");
+                  setActive("overview");
+                  delChar(char);
+                }}
+              />
+            </div>
+          ) : (
+            <NavLink
+              key={`char-nav-${i}`}
+              label={`${char.name}`}
+              onClick={() => {
+                setActive(char.name);
+                setShow("char");
+                setSelChar(char);
+              }}
+              className="crystal-ui-nav"
+              active={active === char.name ? true : false}
+              rightSection={
+                <Text className="crystal-ui-nav-mesos">
+                  {moneyConverter(Math.round(char.totalMesos))}
+                </Text>
+              }
+            />
+          )
+        )}
+        {!showedAdd ? (
+          <NavLink
+            label="Add New Character"
+            className="crystal-ui-nav"
+            onClick={showAdd}
+            leftSection={<IconSquareRoundedPlusFilled />}
           />
-          <button className="new-char-btn" type="submit">
-            <IconCheck color="green" className="new-char-btn-icon" />
-          </button>
-          <button className="new-char-btn" onClick={hideAdd}>
-            <IconX color="red" className="new-char-btn-icon" />
-          </button>
-        </form>
-      )}
-      <div className="crystal-ui-nav total">
-        Total: {moneyConverter(Math.round(totalMesos))}
+        ) : (
+          <form onSubmit={addChar} className="new-char-form">
+            <TextInput
+              placeholder="Name"
+              value={newChar}
+              onChange={(e) => {
+                setNewChar(e.target.value);
+              }}
+              className="crystal-ui-nav input"
+              required
+              radius="xl"
+            />
+            <button className="new-char-btn" type="submit">
+              <IconCheck color="green" className="new-char-btn-icon" />
+            </button>
+            <button className="new-char-btn" onClick={hideAdd}>
+              <IconX color="red" className="new-char-btn-icon" />
+            </button>
+          </form>
+        )}
+        <div className="crystal-ui-nav total">
+          Total: {moneyConverter(Math.round(totalMesos))}
+        </div>
+      </div>
+      <div className="sidebar-footer-div">
+        Thos is a fan-made web app. MapleStory and all official assets are owned
+        by Wizet and Nexon.
       </div>
     </div>
   );

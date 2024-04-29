@@ -4,6 +4,7 @@ import { colorPalette } from "../../data/colroPalette";
 
 import "./CharChart.css";
 import { Group, Text, Title } from "@mantine/core";
+import { moneyConverter } from "../../functions/moneyConverter";
 
 const CharChart = ({ chars, totalMesos }) => {
   const [chartData, setChartData] = useState([]);
@@ -15,6 +16,7 @@ const CharChart = ({ chars, totalMesos }) => {
       const dataForChartToPush = {
         name: char.name,
         value: Math.round(char.totalMesos),
+        bosses: char.totalBosses,
         color: colorPalette[i],
       };
 
@@ -31,7 +33,7 @@ const CharChart = ({ chars, totalMesos }) => {
         {totalMesos.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
       </Title>
       <Group justify="center" className="char-chart-grp">
-        <div className="char-chart-grp-cont">
+        <div className="char-chart-grp-cont left">
           <Text className="char-chart-total">
             Total Character(s): {chartData.length}
           </Text>
@@ -42,13 +44,15 @@ const CharChart = ({ chars, totalMesos }) => {
                 style={{ backgroundColor: data.color }}
               ></div>
               <Text className="char-chart-txt">
-                {data.name}:{" "}
-                {data.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                <span className="bold-txt">{data.name}</span>: Killed{" "}
+                <span className="bold-txt">{data.bosses}</span> bosses for{" "}
+                <span className="bold-txt">{moneyConverter(data.value)}</span>{" "}
+                mesos
               </Text>
             </div>
           ))}
         </div>
-        <div className="char-chart-grp-cont">
+        <div className="char-chart-grp-cont right">
           <PieChart
             data={chartData}
             withLabelsLine

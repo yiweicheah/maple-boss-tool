@@ -27,8 +27,13 @@
 .content-title {
   font-size: 50px !important;
   font-family: 'Adena' !important;
+  font-weight: lighter !important;
 }
 
 .content-subtitle {
   font-size: 35px !important;
+}
+
+.bold-txt {
+  font-weight: bold !important;
 }

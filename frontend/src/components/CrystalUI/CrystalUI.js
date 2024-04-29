@@ -15,6 +15,7 @@ const CrystalUI = () => {
   const [show, setShow] = useState("overview");
   const [selChar, setSelChar] = useState(null);
   const [totalMesos, setTotalMesos] = useState(0);
+  const [totalBosses, setTotalBosses] = useState(0);
   const [hasChanged, setHasChanged] = useState(false);
 
   useEffect(() => {
@@ -63,12 +64,15 @@ const CrystalUI = () => {
 
   useEffect(() => {
     let dataForMesos = 0;
+    let dataForBoss = 0;
 
     chars.forEach((char, i) => {
       dataForMesos += Math.round(char.totalMesos);
+      dataForBoss += char.totalBosses;
     });
 
     setTotalMesos(dataForMesos);
+    setTotalBosses(dataForBoss);
   }, [chars]);
 
   const delChar = (char) => {
@@ -108,6 +112,7 @@ const CrystalUI = () => {
             chars={chars}
             charsBosses={charsBosses}
             totalMesos={totalMesos}
+            totalBosses={totalBosses}
           />
         );
       case "char":

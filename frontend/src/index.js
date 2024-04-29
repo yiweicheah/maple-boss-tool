@@ -13,10 +13,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <MantineProvider theme={theme}>
     <Notifications zIndex="1000" />
-    <React.StrictMode>
-      <Router>
-        <App />
-      </Router>
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <Router>
+      <App />
+    </Router>
+    {/* </React.StrictMode> */}
   </MantineProvider>
 );
